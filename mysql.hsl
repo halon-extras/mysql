@@ -69,6 +69,9 @@ class MySQL
 		if (!$this->socket)
 			return;
 
+		// COM_QUIT
+		if (!$this->send(0, pack("C", 0x01))) return;
+
 		$this->socket->shutdown("SHUT_RDWR");
 		$this->socket->close();
 	}
